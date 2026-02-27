@@ -1,4 +1,4 @@
-[200~# Laboratorio de Seguridad de Red Corporativa
+Laboratorio de Seguridad de Red Corporativa
 
 ## 1. Descripción del Proyecto
 
@@ -139,5 +139,5 @@ Este es un proyecto personal de aprendizaje. Si tienes sugerencias o encuentras 
 
 ---
 
-**Última actualización:** $(date +"%d/%m/%Y")
+**Última actualización:**
 
