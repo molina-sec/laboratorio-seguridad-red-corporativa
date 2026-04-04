@@ -41,8 +41,10 @@ El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre
 | **DMZ** | `192.168.20.0/24` | VMnet3 | Servidores Públicos |
 | **ATTACK** | `10.20.20.0/24` | VMnet6 | Máquinas de Auditoría |
 | **SOC** | `10.30.30.0/24` | VMnet7 | Monitoreo y SIEM |
+---
 
 ### Diagrama de Flujo Lógico
+
 ```text
                      INTERNET
                         │
