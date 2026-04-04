@@ -48,7 +48,6 @@ El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre
 
 ## Diagrama lógico
 
-```text
 INTERNET
    |
 [ VMnet8 ]
