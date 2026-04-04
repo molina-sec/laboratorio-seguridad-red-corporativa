@@ -34,7 +34,7 @@ Security+ → SOC → PNPT → CPTS → OSCP
 
 El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad.
 
-### Segmentación de red
+## Segmentación de red
 
 | Zona   | Subred            | Interfaz VM       | Función                  |
 |--------|------------------|-------------------|--------------------------|
@@ -46,7 +46,7 @@ El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre
 
 ---
 
-### Diagrama lógico
+## Diagrama lógico
 
 ```text
 INTERNET
