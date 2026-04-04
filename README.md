@@ -32,26 +32,25 @@ Security+ → SOC → PNPT → CPTS → OSCP
 
 ## 🧪 Laboratorio profesional
 
-El laboratorio está diseñado para simular una infraestructura corporativa segmentada utilizando virtualización.
+El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad:
 
-### Arquitectura de red
+| Zona | Subred | Interfaz VM | Función |
+| :--- | :--- | :--- | :--- |
+| **WAN** | `192.168.80.X` | VMnet8 (NAT) | Salida a Internet |
+| **LAN** | `192.168.10.0/24` | VMnet4 | Usuarios Internos |
+| **DMZ** | `192.168.20.0/24` | VMnet3 | Servidores Públicos |
+| **ATTACK** | `10.20.20.0/24` | VMnet6 | Máquinas de Auditoría |
+| **SOC** | `10.30.30.0/24` | VMnet7 | Monitoreo y SIEM |
 
-                         INTERNET
-                            │
-                       [ VMnet8 ]
-                            │
-                        (WAN)
-                       192.168.80.X
-                            │
-                      ┌────────────┐
-                      │  pfSense   │
-                      │ Firewall   │
-                      └────────────┘
-        ┌───────────────┼───────────────┬───────────────┐
-        │               │               │               │
-      LAN             DMZ            ATTACK           SOC
-   192.168.10.0   192.168.20.0     10.20.20.0      10.30.30.0
-     (vmnet4)        (vmnet3)        (vmnet6)        (vmnet7)
+### Diagrama de Flujo Lógico
+```text
+                     INTERNET
+                        │
+                  [ pfSense FW ]
+          ┌─────────────┼─────────────┬─────────────┐
+          │             │             │             │
+        [LAN]         [DMZ]       [ATTACK]       [SOC]
+    192.168.10.0  192.168.20.0   10.20.20.0    10.30.30.0
 
 ---
 
@@ -65,20 +64,11 @@ El laboratorio está diseñado para simular una infraestructura corporativa segm
 ---
 
 ## 🧱 Estructura del repositorio
-/
-├── README.md
-├── laboratorio/
-│ ├── README.md
-│ └── diagramas/
-├── fase-1-fundamentos/
-│ ├── networking/
-│ ├── linux/
-│ └── seguridad-base/
-├── fase-2-soc/
-├── fase-3-pentesting/
-├── fase-4-especializacion/
-├── fase-5-oscp/
-
+├── laboratorio/            # Configuración de pfSense y diagramas
+├── fase-1-fundamentos/      # Redes, Linux y protocolos base
+├── fase-2-soc/             # Implementación de herramientas de defensa
+├── fase-3-pentesting/      # Laboratorios de explotación controlada
+└── fase-4-oscp/            # Preparación específica para certificación
 ---
 
 ## 🛠️ Tecnologías y herramientas
