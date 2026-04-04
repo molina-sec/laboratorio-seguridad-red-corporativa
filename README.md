@@ -31,45 +31,55 @@ Security+ → SOC → PNPT → CPTS → OSCP
 ---
 
 ## 🧪 Laboratorio profesional
+# 🛡️ Laboratorio de Seguridad en Red Corporativa
 
-El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad.
-
-## Segmentación de red
-
-| Zona   | Subred            | Interfaz VM       | Función                  |
-|--------|------------------|-------------------|--------------------------|
-| WAN    | 192.168.80.X     | VMnet8 (NAT)      | Salida a Internet        |
-| LAN    | 192.168.10.0/24  | VMnet4            | Usuarios internos        |
-| DMZ    | 192.168.20.0/24  | VMnet3            | Servicios expuestos      |
-| ATTACK | 10.20.20.0/24    | VMnet6            | Máquina atacante         |
-| SOC    | 10.30.30.0/24    | VMnet7            | Monitoreo y análisis     |
+Repositorio dedicado a la construcción, documentación y evolución de un entorno de red corporativa simulado para el entrenamiento en ciberseguridad.
 
 ---
 
-## Diagrama lógico
+## 👤 Perfil Profesional
+**Estudiante de Ciberseguridad** orientado a entornos reales de infraestructura corporativa. Actualmente enfocado en redes, análisis de tráfico y seguridad defensiva (SOC), con una ruta clara hacia Pentesting y Red Team.
 
-INTERNET
-   |
-[ VMnet8 ]
-   |
- (WAN)
-192.168.80.X
-   |
-+------------------+
-|     pfSense      |
-|  Firewall/Router |
-+------------------+
-   |         |         |         |
-   |         |         |         |
-  LAN       DMZ      ATTACK      SOC
-192.168.10.0 192.168.20.0 10.20.20.0 10.30.30.0 
+## 🎯 Objetivo del Repositorio
+Documentar el despliegue de un laboratorio profesional diseñado para simular una red empresarial segmentada.
+*   **Networking:** Segmentación con VLANs y reglas de Firewall.
+*   **Administración:** Gestión de servidores Linux (Debian).
+*   **Defensa:** Análisis de tráfico y detección de amenazas.
+*   **Ofensiva:** Pentesting controlado.
 
-### Componentes
+---
 
-- **pfSense** → Firewall y router central
-- **Kali Linux** → Máquina atacante
-- **Debian** → Sistema Linux de práctica / servidor
-- **Metasploitable** → Máquina vulnerable
+## 🧭 Ruta de Aprendizaje
+`Security+` ➡️ `SOC` ➡️ `PNPT` ➡️ `CPTS` ➡️ `OSCP`
+
+> **Estado Actual:** `Fase 1 — Fundamentos`
+> * [x] Configuración de Hypervisor (VMware)
+> * [/] Networking y Protocolos (En progreso)
+> * [ ] Administración de Sistemas Linux
+
+---
+
+## 🧪 Arquitectura del Laboratorio
+
+El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad:
+
+| Zona | Subred | Interfaz VM | Función |
+| :--- | :--- | :--- | :--- |
+| **WAN** | `192.168.80.X` | VMnet8 (NAT) | Salida a Internet |
+| **LAN** | `192.168.10.0/24` | VMnet4 | Usuarios Internos |
+| **DMZ** | `192.168.20.0/24` | VMnet3 | Servidores Públicos |
+| **ATTACK** | `10.20.20.0/24` | VMnet6 | Máquinas de Auditoría |
+| **SOC** | `10.30.30.0/24` | VMnet7 | Monitoreo y SIEM |
+
+### Diagrama de Flujo Lógico
+```text
+                     INTERNET
+                        │
+                  [ pfSense FW ]
+          ┌─────────────┼─────────────┬─────────────┐
+          │             │             │             │
+        [LAN]         [DMZ]       [ATTACK]       [SOC]
+    192.168.10.0  192.168.20.0   10.20.20.0    10.30.30.0
 
 ---
 
@@ -77,17 +87,11 @@ INTERNET
 
 /
 ├── README.md
-├── laboratorio/
-│   ├── README.md
-│   └── diagramas/
-├── fase-1-fundamentos/
-│   ├── networking/
-│   ├── linux/
-│   └── seguridad-base/
-├── fase-2-soc/
-├── fase-3-pentesting/
-├── fase-4-especializacion/
-├── fase-5-oscp/
+├── laboratorio/            # Configuración de pfSense y diagramas
+├── fase-1-fundamentos/      # Redes, Linux y protocolos base
+├── fase-2-soc/             # Implementación de herramientas de defensa
+├── fase-3-pentesting/      # Laboratorios de explotación controlada
+└── fase-4-oscp/            # Preparación específica para certificación
 
 ---
 
