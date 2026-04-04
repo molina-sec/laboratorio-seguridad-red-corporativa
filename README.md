@@ -13,48 +13,57 @@ Este repositorio documenta la construcción y evolución de un laboratorio profe
 
 El objetivo es desarrollar habilidades prácticas en:
 
-- Fundamentos de networking
-- Administración de sistemas Linux
-- Análisis de tráfico de red
-- Detección de amenazas (SOC)
-- Pentesting controlado en entornos simulados
+- Fundamentos de networking  
+- Administración de sistemas Linux  
+- Análisis de tráfico de red  
+- Detección de amenazas (SOC)  
+- Pentesting controlado en entornos simulados  
 
 ---
 
 ## 🧭 Ruta de aprendizaje
 
-Security+ → SOC → PNPT → CPTS → OSCP
+Security+ → SOC → PNPT → CPTS → OSCP  
 
-- Fase actual: **Fase 1 — Fundamentos**
-- En progreso: networking, Linux y análisis de tráfico
+- **Fase actual:** Fase 1 — Fundamentos  
+- **En progreso:** networking, Linux y análisis de tráfico  
 
 ---
 
 ## 🧪 Laboratorio profesional
 
-El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad:
+El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad.
 
-| Zona | Subred | Interfaz VM | Función |
-| :--- | :--- | :--- | :--- |
-| **WAN** | `192.168.80.X` | VMnet8 (NAT) | Salida a Internet |
-| **LAN** | `192.168.10.0/24` | VMnet4 | Usuarios Internos |
-| **DMZ** | `192.168.20.0/24` | VMnet3 | Servidores Públicos |
-| **ATTACK** | `10.20.20.0/24` | VMnet6 | Máquinas de Auditoría |
-| **SOC** | `10.30.30.0/24` | VMnet7 | Monitoreo y SIEM |
+### Segmentación de red
+
+| Zona   | Subred            | Interfaz VM       | Función                  |
+|--------|------------------|-------------------|--------------------------|
+| WAN    | 192.168.80.X     | VMnet8 (NAT)      | Salida a Internet        |
+| LAN    | 192.168.10.0/24  | VMnet4            | Usuarios internos        |
+| DMZ    | 192.168.20.0/24  | VMnet3            | Servicios expuestos      |
+| ATTACK | 10.20.20.0/24    | VMnet6            | Máquina atacante         |
+| SOC    | 10.30.30.0/24    | VMnet7            | Monitoreo y análisis     |
+
 ---
 
-### Diagrama de Flujo Lógico
+### Diagrama lógico
 
 ```text
-                     INTERNET
-                        │
-                  [ pfSense FW ]
-          ┌─────────────┼─────────────┬─────────────┐
-          │             │             │             │
-        [LAN]         [DMZ]       [ATTACK]       [SOC]
-    192.168.10.0  192.168.20.0   10.20.20.0    10.30.30.0
-
----
+INTERNET
+   |
+[ VMnet8 ]
+   |
+ (WAN)
+192.168.80.X
+   |
++------------------+
+|     pfSense      |
+|  Firewall/Router |
++------------------+
+   |         |         |         |
+   |         |         |         |
+  LAN       DMZ      ATTACK      SOC
+192.168.10.0 192.168.20.0 10.20.20.0 10.30.30.0 
 
 ### Componentes
 
@@ -66,11 +75,21 @@ El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre
 ---
 
 ## 🧱 Estructura del repositorio
-├── laboratorio/            # Configuración de pfSense y diagramas
-├── fase-1-fundamentos/      # Redes, Linux y protocolos base
-├── fase-2-soc/             # Implementación de herramientas de defensa
-├── fase-3-pentesting/      # Laboratorios de explotación controlada
-└── fase-4-oscp/            # Preparación específica para certificación
+
+/
+├── README.md
+├── laboratorio/
+│   ├── README.md
+│   └── diagramas/
+├── fase-1-fundamentos/
+│   ├── networking/
+│   ├── linux/
+│   └── seguridad-base/
+├── fase-2-soc/
+├── fase-3-pentesting/
+├── fase-4-especializacion/
+├── fase-5-oscp/
+
 ---
 
 ## 🛠️ Tecnologías y herramientas
