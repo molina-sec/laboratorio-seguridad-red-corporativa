@@ -1,78 +1,54 @@
-# Laboratorio de Seguridad en Red Corporativa
+# 🛡️ Laboratorio de Seguridad en Red Corporativa
 
-## 👤 Perfil profesional
-
-Estudiante de ciberseguridad orientado a entornos reales de infraestructura corporativa.  
-Actualmente en formación con enfoque en redes, análisis de tráfico y seguridad defensiva (SOC), con transición planificada hacia pentesting y Red Team.
+**Estudiante de ciberseguridad** construyendo un laboratorio profesional
+para simular una red corporativa segmentada. Enfoque actual en redes,
+análisis de tráfico y seguridad defensiva (SOC), con ruta planificada
+hacia Pentesting y Red Team.
 
 ---
 
 ## 🎯 Objetivo del repositorio
 
-Este repositorio documenta la construcción y evolución de un laboratorio profesional de ciberseguridad, diseñado para simular una red corporativa segmentada.
+Documentar de forma real y progresiva el desarrollo de habilidades en:
 
-El objetivo es desarrollar habilidades prácticas en:
+- Fundamentos de networking y protocolos
+- Administración de sistemas Linux
+- Análisis de tráfico de red
+- Detección de amenazas (SOC)
+- Pentesting controlado en entornos simulados
 
-- Fundamentos de networking  
-- Administración de sistemas Linux  
-- Análisis de tráfico de red  
-- Detección de amenazas (SOC)  
-- Pentesting controlado en entornos simulados  
+Todo el contenido está basado en ejecución real en laboratorio propio,
+con evidencia técnica (logs, capturas, comandos) en cada práctica.
 
 ---
 
 ## 🧭 Ruta de aprendizaje
 
-Security+ → SOC → PNPT → CPTS → OSCP  
+`Security+` → `SOC` → `PNPT` → `CPTS` → `OSCP`
 
-- **Fase actual:** Fase 1 — Fundamentos  
-- **En progreso:** networking, Linux y análisis de tráfico  
+**Fase actual:** Fase 1 — Fundamentos
 
----
-
-## 🧪 Laboratorio profesional
-# 🛡️ Laboratorio de Seguridad en Red Corporativa
-
-Repositorio dedicado a la construcción, documentación y evolución de un entorno de red corporativa simulado para el entrenamiento en ciberseguridad.
+- [x] Configuración del laboratorio (VMware + pfSense)
+- [ ] Networking y protocolos (TCP/IP, OSI, DNS, HTTP, NAT)
+- [ ] Administración de sistemas Linux
+- [ ] Seguridad base (CIA Triad, amenazas, criptografía)
 
 ---
 
-## 👤 Perfil Profesional
-**Estudiante de Ciberseguridad** orientado a entornos reales de infraestructura corporativa. Actualmente enfocado en redes, análisis de tráfico y seguridad defensiva (SOC), con una ruta clara hacia Pentesting y Red Team.
+## 🧪 Arquitectura del laboratorio
 
-## 🎯 Objetivo del Repositorio
-Documentar el despliegue de un laboratorio profesional diseñado para simular una red empresarial segmentada.
-*   **Networking:** Segmentación con VLANs y reglas de Firewall.
-*   **Administración:** Gestión de servidores Linux (Debian).
-*   **Defensa:** Análisis de tráfico y detección de amenazas.
-*   **Ofensiva:** Pentesting controlado.
+El laboratorio usa **pfSense** como núcleo para segmentar el tráfico
+entre zonas de seguridad independientes:
 
----
+| Zona   | Subred            | Interfaz VM  | Función               |
+| :----- | :---------------- | :----------- | :-------------------- |
+| WAN    | `192.168.80.X`    | VMnet8 (NAT) | Salida a Internet     |
+| LAN    | `192.168.10.0/24` | VMnet4       | Usuarios internos     |
+| DMZ    | `192.168.20.0/24` | VMnet3       | Servidores públicos   |
+| ATTACK | `10.20.20.0/24`   | VMnet6       | Máquinas de auditoría |
+| SOC    | `10.30.30.0/24`   | VMnet7       | Monitoreo y SIEM      |
 
-## 🧭 Ruta de Aprendizaje
-`Security+` ➡️ `SOC` ➡️ `PNPT` ➡️ `CPTS` ➡️ `OSCP`
-
-> **Estado Actual:** `Fase 1 — Fundamentos`
-> * [x] Configuración de Hypervisor (VMware)
-> * [/] Networking y Protocolos (En progreso)
-> * [ ] Administración de Sistemas Linux
-
----
-
-## 🧪 Arquitectura del Laboratorio
-
-El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre diferentes zonas de seguridad:
-
-| Zona | Subred | Interfaz VM | Función |
-| :--- | :--- | :--- | :--- |
-| **WAN** | `192.168.80.X` | VMnet8 (NAT) | Salida a Internet |
-| **LAN** | `192.168.10.0/24` | VMnet4 | Usuarios Internos |
-| **DMZ** | `192.168.20.0/24` | VMnet3 | Servidores Públicos |
-| **ATTACK** | `10.20.20.0/24` | VMnet6 | Máquinas de Auditoría |
-| **SOC** | `10.30.30.0/24` | VMnet7 | Monitoreo y SIEM |
-
-### Diagrama de Flujo Lógico
-```text
+```
                      INTERNET
                         │
                   [ pfSense FW ]
@@ -80,65 +56,49 @@ El laboratorio utiliza **pfSense** como núcleo para segmentar el tráfico entre
           │             │             │             │
         [LAN]         [DMZ]       [ATTACK]       [SOC]
     192.168.10.0  192.168.20.0   10.20.20.0    10.30.30.0
+```
 
 ---
 
 ## 🧱 Estructura del repositorio
 
+```
 /
 ├── README.md
-├── laboratorio/            # Configuración de pfSense y diagramas
-├── fase-1-fundamentos/      # Redes, Linux y protocolos base
-├── fase-2-soc/             # Implementación de herramientas de defensa
-├── fase-3-pentesting/      # Laboratorios de explotación controlada
-└── fase-4-oscp/            # Preparación específica para certificación
+├── laboratorio/              # Configuración de pfSense y diagramas de red
+├── fase-1-fundamentos/       # Networking, Linux y seguridad base
+├── fase-2-soc/               # Detección de amenazas y análisis de logs
+├── fase-3-pentesting/        # Explotación controlada y reportes (PNPT)
+├── fase-4-especializacion/   # Active Directory avanzado y CPTS
+├── fase-5-oscp/              # Preparación y práctica para OSCP
+└── recursos/                 # Herramientas, referencias y cheatsheets
+```
 
 ---
 
 ## 🛠️ Tecnologías y herramientas
 
-- VMware Workstation Pro 17
-- Debian 13.4.0 (host)
-- pfSense
-- Kali Linux
-- Wireshark
-- tcpdump
-- Nmap
+| Categoría      | Herramientas                            |
+| :------------- | :-------------------------------------- |
+| Virtualización | VMware Workstation Pro 17               |
+| Sistemas       | Debian, Kali Linux, Metasploitable      |
+| Firewall       | pfSense                                 |
+| Red            | nmap, tcpdump, Wireshark                |
+| Plataformas    | TryHackMe · Hack The Box (fases 3+)     |
 
 ---
 
-## 📈 Progreso
+## 📈 Metodología de trabajo
 
-Este repositorio se actualiza de forma continua siguiendo una rutina estructurada:
+Cada lección sigue este flujo antes de hacer commit:
 
-- Teoría → TryHackMe → Laboratorio → Documentación en GitHub
-- Evaluaciones semanales (mínimo 70% para avanzar)
+> Teoría → TryHackMe → Laboratorio propio → Documentado en GitHub
 
----
-
-## 📌 Enfoque
-
-Todo el contenido documentado en este repositorio está basado en:
-
-- Ejecución real en laboratorio propio
-- Evidencia técnica (logs, tráfico, comandos)
-- Análisis técnico de cada práctica
+Evaluaciones semanales con mínimo 70% para avanzar a la siguiente unidad.
 
 ---
 
-## 🚧 Estado actual
+## 📬 Contacto
 
-En desarrollo — construyendo bases sólidas en redes y sistemas antes de avanzar a escenarios ofensivos.
-
----
-
-## 📚 Plataformas de aprendizaje
-
-- TryHackMe
-- Hack The Box (en fases posteriores)
-
----
-
-## 🔒 Nota
-
-Este laboratorio es utilizado exclusivamente con fines educativos en un entorno controlado. 
+- LinkedIn: https://www.linkedin.com/in/victor-enrique-molina-b534ba3a6/
+- Email: molina.victor.segurity@gmail.com
